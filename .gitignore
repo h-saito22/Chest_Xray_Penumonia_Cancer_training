@@ -1,2 +1,7 @@
-./notebook/data/.venv/
+outputs/
+notebooks/data/
 .venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
