@@ -1,0 +1,117 @@
+##### baseline / dataset
+epoch 0: mean_loss = 0.4021320904896486
+epoch 1: mean_loss = 0.3115651112941145
+epoch 2: mean_loss = 0.26487588389930916
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/baseline_dataset.pth
+[[375 132  15 102]]
+epoch 0: mean_loss = 0.4569013688999873
+[[7 3 1 5]]
+epoch 0: mean_loss = 0.5555427074432373
+21962
+=== baseline_dataset ===
+test : acc=0.8125 precision=0.7862 recall=0.9615 f1=0.8651
+val  : acc=0.6250 precision=0.5833 recall=0.8750 f1=0.7000
+##### resnet_frozen / dataset
+epoch 0: mean_loss = 0.269552412928522
+epoch 1: mean_loss = 0.21269408662580638
+epoch 2: mean_loss = 0.19171868308670134
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_frozen_dataset.pth
+[[383 136   7  98]]
+epoch 0: mean_loss = 0.46481135986052835
+[[8 3 0 5]]
+epoch 0: mean_loss = 0.8660840392112732
+11177538
+=== resnet_frozen_dataset ===
+test : acc=0.8317 precision=0.7963 recall=0.9821 f1=0.8794
+val  : acc=0.6875 precision=0.6154 recall=1.0000 f1=0.7619
+##### resnet_frozen / imagenet
+epoch 0: mean_loss = 0.26325419610309087
+epoch 1: mean_loss = 0.2042964660088343
+epoch 2: mean_loss = 0.18578613998562646
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_frozen_imagenet.pth
+[[384 153   6  81]]
+epoch 0: mean_loss = 0.3887691979583066
+[[8 4 0 4]]
+epoch 0: mean_loss = 0.6856942176818848
+11177538
+=== resnet_frozen_imagenet ===
+test : acc=0.8606 precision=0.8258 recall=0.9846 f1=0.8982
+val  : acc=0.7500 precision=0.6667 recall=1.0000 f1=0.8000
+##### resnet_finetuning / dataset
+epoch 0: mean_loss = 0.132276116822492
+epoch 1: mean_loss = 0.08112985667975425
+epoch 2: mean_loss = 0.06649108995355671
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_finetuning_dataset.pth
+[[385 173   5  61]]
+epoch 0: mean_loss = 0.4910929722143173
+[[8 5 0 3]]
+epoch 0: mean_loss = 0.47400373220443726
+11177538
+=== resnet_finetuning_dataset ===
+test : acc=0.8942 precision=0.8632 recall=0.9872 f1=0.9211
+val  : acc=0.8125 precision=0.7273 recall=1.0000 f1=0.8421
+##### resnet_finetuning / imagenet
+epoch 0: mean_loss = 0.13264312486355678
+epoch 1: mean_loss = 0.08093706933400119
+epoch 2: mean_loss = 0.06567924503312715
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_finetuning_imagenet.pth
+[[383 181   7  53]]
+epoch 0: mean_loss = 0.37688095861999615
+[[8 5 0 3]]
+epoch 0: mean_loss = 0.3539653420448303
+11177538
+=== resnet_finetuning_imagenet ===
+test : acc=0.9038 precision=0.8784 recall=0.9821 f1=0.9274
+val  : acc=0.8125 precision=0.7273 recall=1.0000 f1=0.8421
+##### resnet_finetuning_noise / dataset
+epoch 0: mean_loss = 0.17063509852859687
+epoch 1: mean_loss = 0.10399730220448478
+epoch 2: mean_loss = 0.08996974387951767
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_finetuning_noise_dataset.pth
+[[387 153   3  81]]
+epoch 0: mean_loss = 0.5608059818330567
+[[8 5 0 3]]
+epoch 0: mean_loss = 0.7123836874961853
+11177538
+=== resnet_finetuning_noise_dataset ===
+test : acc=0.8654 precision=0.8269 recall=0.9923 f1=0.9021
+val  : acc=0.8125 precision=0.7273 recall=1.0000 f1=0.8421
+##### resnet_finetuning_noise / imagenet
+epoch 0: mean_loss = 0.1681558104129108
+epoch 1: mean_loss = 0.10165172274884385
+epoch 2: mean_loss = 0.09110054737913988
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/resnet_finetuning_noise_imagenet.pth
+[[388 155   2  79]]
+epoch 0: mean_loss = 0.5374772971924521
+[[8 5 0 3]]
+epoch 0: mean_loss = 0.6357414126396179
+11177538
+=== resnet_finetuning_noise_imagenet ===
+test : acc=0.8702 precision=0.8308 recall=0.9949 f1=0.9055
+val  : acc=0.8125 precision=0.7273 recall=1.0000 f1=0.8421
+##### efficientnet / dataset
+epoch 0: mean_loss = 0.2742700899945446
+epoch 1: mean_loss = 0.20384104894988375
+epoch 2: mean_loss = 0.17430682728307012
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/efficientnet_dataset.pth
+[[346 202  44  32]]
+epoch 0: mean_loss = 0.29408207965584904
+[[7 8 1 0]]
+epoch 0: mean_loss = 0.1643330156803131
+4010110
+=== efficientnet_dataset ===
+test : acc=0.8782 precision=0.9153 recall=0.8872 f1=0.9010
+val  : acc=0.9375 precision=1.0000 recall=0.8750 f1=0.9333
+##### efficientnet / imagenet
+epoch 0: mean_loss = 0.2854118032232384
+epoch 1: mean_loss = 0.20806567009789811
+epoch 2: mean_loss = 0.18093498725946877
+モデルを保存しました: /Users/saito/brexa_training/ml-engineer-portfolio-roadmap/01_chest-xray-pneumonia-calssification/outputs/models/efficientnet_imagenet.pth
+[[354 199  36  35]]
+epoch 0: mean_loss = 0.3051511330100206
+[[8 7 0 1]]
+epoch 0: mean_loss = 0.21509867906570435
+4010110
+=== efficientnet_imagenet ===
+test : acc=0.8862 precision=0.9100 recall=0.9077 f1=0.9089
+val  : acc=0.9375 precision=0.8889 recall=1.0000 f1=0.9412

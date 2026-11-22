@@ -21,6 +21,7 @@ def save_model(model, model_name):
 
 
 def BaseLine_CNN_train(model, optimizer, dataset, epoch_num=3, model_name=None):
+    model.train()
     criterion = nn.CrossEntropyLoss()
     mean_list = []
     for epoch in range(epoch_num):
@@ -41,6 +42,7 @@ def BaseLine_CNN_train(model, optimizer, dataset, epoch_num=3, model_name=None):
 
 
 def resnet_train(model, optimizer, dataset, epoch_num=3, model_name=None):
+    model.train()
     criterion = nn.CrossEntropyLoss()
     TP = FP = FN = TN = 0
     mean_list = []

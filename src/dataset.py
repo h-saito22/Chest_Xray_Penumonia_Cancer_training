@@ -11,6 +11,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from PIL import Image
+import torch
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 
@@ -22,6 +23,8 @@ DATA_DIR = _PROJECT_ROOT /  "notebooks" / "data"
 
 IMAGE_SIZE = (224, 224)
 BATCH_SIZE = 16
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD = (0.229, 0.224, 0.225)
 
 
 def make_dataset(kind: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
@@ -71,21 +74,24 @@ def compute_norm_stats(kind: str = "train", data_dir: Path = DATA_DIR):
     norm_std = std / 255
     return norm_mean, norm_std
 
+def get_transforms(norm_mean, norm_std, noise: bool = False):
+    # 1つの値（float）が来たら、3チャンネル分に広げる
+    if isinstance(norm_mean, (int, float)):
+        norm_mean = (norm_mean,) * 3
+    if isinstance(norm_std, (int, float)):
+        norm_std = (norm_std,) * 3
+    normalize = transforms.Normalize(norm_mean, norm_std)
 
-def get_transforms(norm_mean: float, norm_std: float):
-    """train用(Augmentationあり)とval/test用(リサイズ+正規化のみ)のtransformを作成する。"""
-    normalize = transforms.Normalize(
-        (norm_mean, norm_mean, norm_mean),
-        (norm_std, norm_std, norm_std),
-    )
-
-    train_transform = transforms.Compose([
+    train_steps = [
         transforms.Resize(IMAGE_SIZE),
         transforms.RandomAffine(degrees=10, translate=(0.1, 0.1), scale=(0.9, 1.1)),
         transforms.ColorJitter(brightness=0.1, contrast=0.1),
         transforms.ToTensor(),
-        normalize,
-    ])
+    ]
+    if noise:
+        train_steps.append(transforms.RandomApply([transforms.Lambda(add_gaussian_noise)], p=0.5))
+    train_steps.append(normalize)
+    train_transform = transforms.Compose(train_steps)
 
     eval_transform = transforms.Compose([
         transforms.Resize(IMAGE_SIZE),
@@ -113,12 +119,15 @@ class PneumoniaDataset(Dataset):
         image = self.transform(image)
         return image, label
 
-
-def get_dataloaders(batch_size: int = BATCH_SIZE, data_dir: Path = DATA_DIR):
-    """train/val/test用のDataLoaderを3つまとめて作成する。"""
-    norm_mean, norm_std = compute_norm_stats("train", data_dir)
-    train_transform, eval_transform = get_transforms(norm_mean, norm_std)
-
+def get_dataloaders(batch_size: int = BATCH_SIZE, data_dir: Path = DATA_DIR,
+                    noise: bool = False, norm: str = "dataset"):
+    """norm: "dataset"=trainから計算した統計値 / "imagenet"=ImageNet統計値"""
+    if norm == "imagenet":
+        norm_mean, norm_std = IMAGENET_MEAN, IMAGENET_STD
+    else:
+        norm_mean, norm_std = compute_norm_stats("train", data_dir)
+    train_transform, eval_transform = get_transforms(norm_mean, norm_std, noise=noise)
+    
     train_df = make_dataset("train", data_dir)
     val_df = make_dataset("val", data_dir)
     test_df = make_dataset("test", data_dir)
@@ -133,6 +142,9 @@ def get_dataloaders(batch_size: int = BATCH_SIZE, data_dir: Path = DATA_DIR):
 
     return train_loader, val_loader, test_loader
 
+def add_gaussian_noise(tensor, std=0.05):
+    """Tensor化した画像にガウシアンノイズを加える(ノートブックと同じ強さ0.05)。"""
+    return tensor + torch.randn_like(tensor) * std
 
 if __name__ == "__main__":
     train_loader, val_loader, test_loader = get_dataloaders()
