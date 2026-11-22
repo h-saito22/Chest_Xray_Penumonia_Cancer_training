@@ -23,7 +23,7 @@ def calculation_test(model, dataset, epoch_num=1, recall=True):
                     local_idx = torch.where((pred_label == 0) & (labels == 1))[0]
                 else:
                     local_idx = torch.where((pred_label == 1) & (labels == 0))[0]
-                global_idx = i * 16 + local_idx
+                global_idx = i * dataset.batch_size + local_idx
                 loss = criterion(outputs, labels)
                 loss_value = loss.item()
                 loss_list.append(loss_value)
